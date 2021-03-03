@@ -12,11 +12,11 @@ namespace Testing.Models
         }
 
             public int ProductID { get; set; }
-            public int NameID { get; set; }
-            public int PriceID { get; set; }
+            public string Name { get; set; }
+            public double Price { get; set; }
             public int CategoryID { get; set; }
-            public int OnSaleID { get; set; }
-            public int StockLevelID { get; set; }
+            public int OnSale { get; set; }
+            public string StockLevel { get; set; }
     }
 
     }
