@@ -17,6 +17,7 @@ namespace Testing.Models
             public int CategoryID { get; set; }
             public int OnSale { get; set; }
             public string StockLevel { get; set; }
+            public IEnumerable<Category> Categories { get; set; }
     }
 
     }
