@@ -18,6 +18,7 @@ namespace Testing.Models
             public string ForgivenessRank{ get; set; }
             public int Price { get; set; }
             //public IEnumerable<Category> Categories { get; set; }
+            public string Image { get; set; }
     }
 
     }       

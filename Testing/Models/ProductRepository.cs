@@ -15,28 +15,28 @@ namespace Testing.Models
                 _conn = conn;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProduct()
         {
             return _conn.Query<Product>("SELECT * FROM PRODUCTS;");
         }
 
-        public Product GetProducts(int id)
+        public Product GetAllProduct(int id)
         {
             return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE driverID = @id",
                 new { id = id });
 
         }
 
-        public void UpdateProduct(Product products)
+        public void UpdateProduct(Product product)
         {
             _conn.Execute("UPDATE products SET Name = @name, StrokesGained = @strokesGained, TotalDistanceRank = @totalDistanceRank, ForgivenessRank = @forgivenessRank, Price = @price WHERE driverID = @id",
-                new { name = products.Name, strokesGained = products.StrokesGained, totalDistanceRank = products.TotalDistanceRank, forgivenessRank = products.ForgivenessRank, price = products.Price, id = products.driverID });
+                new { name = product.Name, strokesGained = product.StrokesGained, totalDistanceRank = product.TotalDistanceRank, forgivenessRank = product.ForgivenessRank, price = product.Price, id = product.driverID });
         }
 
-        public void InsertProduct(Product productToInsert)
+        public void InsertProduct(Product productsToInsert)
         {
-            _conn.Execute("INSERT INTO products (NAME, STROKESGAINED, TOTALDISTANCERANK, FORGIVNESSRANK, PRICE) VALUES (@name, @strokesgained, @totaldistancerank, @forgivenessrank @price, @driverID);",
-                new { name = productToInsert.Name, strokesgained = productToInsert.StrokesGained, totaldistancerank = productToInsert.TotalDistanceRank, forgivenessrank = productToInsert.ForgivenessRank, price = productToInsert.Price, driverID = productToInsert.driverID });
+            _conn.Execute("INSERT INTO products (NAME, STROKESGAINED, TOTALDISTANCERANK, FORGIVENESSRANK, PRICE) VALUES (@name, @strokesgained, @totaldistancerank, @forgivenessrank, @price);",
+                new { name = productsToInsert.Name, strokesgained = productsToInsert.StrokesGained, totaldistancerank = productsToInsert.TotalDistanceRank, forgivenessrank = productsToInsert.ForgivenessRank, price = productsToInsert.Price });
         }
 
         /*public IEnumerable<Category> GetCategories()
@@ -52,20 +52,27 @@ namespace Testing.Models
 
             return product;
         }*/
-        public void DeleteProduct(Product products)
+        public void DeleteProduct(Product product)
         {
             //_conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;",
                                        //new { id = products.driverID });
            //_conn.Execute("DELETE FROM Sales WHERE ProductID = @id;",
                                        //new { id = products.driverID });
             _conn.Execute("DELETE FROM Products WHERE DriverID = @id;",
-                                       new { id = products.driverID });
+                                       new { id = product.driverID });
         }
 
-        public IEnumerable<Product> SearchProducts(string search)
+        public IEnumerable<Product> SearchProduct(string search)
         {
             return _conn.Query<Product>("SELECT * FROM products where name LIKE @name",
             new { name = "%" + search + "%" });
+        }
+
+      
+        public void InsertImage(Product product)
+        {
+            _conn.Execute("Update Products SET Image = @image WHERE DriverID = @driverid",
+        new { image = product.Image, driverid = product.driverID });
         }
     }
 }

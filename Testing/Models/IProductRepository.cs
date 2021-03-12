@@ -7,16 +7,17 @@ namespace Testing.Models
 {
     public interface IProductRepository
     {
-        public IEnumerable<Product> GetAllProducts();
-        public Product GetProducts(int id);
-        public void UpdateProduct(Product products);
-        public void InsertProduct(Product productsToInsert);
+        public IEnumerable<Product> GetAllProduct();
+        public Product GetAllProduct(int id);
+        public void UpdateProduct(Product product);
+        public void InsertProduct(Product productToInsert);
         //public IEnumerable<Category> GetCategories();
         //public Product AssignCategory();
-        public void DeleteProduct(Product products);
-        public IEnumerable<Product> SearchProducts(string search);
-
+        public void DeleteProduct(Product product);
+        public IEnumerable<Product> SearchProduct(string search);
+        public void InsertImage(Product product);
 
     }
+    
 
 }
