@@ -24,14 +24,14 @@ namespace ASPNET.Controllers
 
         public IActionResult ViewProduct(int id)
         {
-            var product = repo.GetProduct(id);
+            var products = repo.GetProducts(id);
 
-            return View(product);
+            return View(products);
         }
 
         public IActionResult UpdateProduct(int id)
         {
-            Product prod = repo.GetProduct(id);
+            Product prod = repo.GetProducts(id);
 
             if (prod == null)
             {
@@ -41,32 +41,40 @@ namespace ASPNET.Controllers
             return View(prod);
         }
 
-        public IActionResult UpdateProductToDatabase(Product product)
+        public IActionResult UpdateProductToDatabase(Product products)
         {
-            repo.UpdateProduct(product);
+            repo.UpdateProduct(products);
 
-            return RedirectToAction("ViewProduct", new { id = product.ProductID });
+            return RedirectToAction("ViewProduct", new { id = products.driverID });
         }
 
-        public IActionResult InsertProduct()
+        /*public IActionResult InsertProduct()
         {
             var prod = repo.AssignCategory();
 
             return View(prod);
-        }
+        }*/
 
-        public IActionResult InsertProductToDatabase(Product productToInsert)
+        public IActionResult InsertProduct(Product productToInsert)
         {
             repo.InsertProduct(productToInsert);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteProduct(Product product)
+        public IActionResult DeleteProduct(Product products)
         {
-            repo.DeleteProduct(product);
+            repo.DeleteProduct(products);
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Search(string searchString)
+        {
+            var search = repo.SearchProducts(searchString);
+
+            return View(search);
+
         }
 
 

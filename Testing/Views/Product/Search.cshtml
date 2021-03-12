@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Product>
 
-<h2>Driver</h2>
+<h2>Products</h2>
 <table class="table">
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Strokes Gained</th>
         <th>Total Distance Rank</th>
-        <th>Forgiveness Rank</th>
+        <th>Forgivness Rank</th>
         <th>Price</th>
     </tr>
 
@@ -24,26 +24,11 @@
         </tr>
     }
 
-
-    @using (Html.BeginForm("Search", "product", FormMethod.Get))
-    {
-        <p>
-            Find by Driver: @Html.TextBox("searchString")
-            <input type="submit" value="Search" />
-
-        </p>
-
-    }
-
     <div style="display: block">
-        <a href="/Product/InsertProduct/">Add New Driver</a>
+        <a href="/Product/InsertProduct/">Create a New Product</a>
     </div>
 
 
 
 
 </table>
-    
-
-   
-

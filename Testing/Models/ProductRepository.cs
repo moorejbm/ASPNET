@@ -20,49 +20,53 @@ namespace Testing.Models
             return _conn.Query<Product>("SELECT * FROM PRODUCTS;");
         }
 
-        public Product GetProduct(int id)
+        public Product GetProducts(int id)
         {
-            return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE PRODUCTID = @id",
+            return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE driverID = @id",
                 new { id = id });
 
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(Product products)
         {
-            _conn.Execute("UPDATE products SET Name = @name, Price = @price WHERE ProductID = @id",
-                new { name = product.Name, price = product.Price, id = product.ProductID });
+            _conn.Execute("UPDATE products SET Name = @name, StrokesGained = @strokesGained, TotalDistanceRank = @totalDistanceRank, ForgivenessRank = @forgivenessRank, Price = @price WHERE driverID = @id",
+                new { name = products.Name, strokesGained = products.StrokesGained, totalDistanceRank = products.TotalDistanceRank, forgivenessRank = products.ForgivenessRank, price = products.Price, id = products.driverID });
         }
 
         public void InsertProduct(Product productToInsert)
         {
-            _conn.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES (@name, @price, @categoryID);",
-                new { name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID });
+            _conn.Execute("INSERT INTO products (NAME, STROKESGAINED, TOTALDISTANCERANK, FORGIVNESSRANK, PRICE) VALUES (@name, @strokesgained, @totaldistancerank, @forgivenessrank @price, @driverID);",
+                new { name = productToInsert.Name, strokesgained = productToInsert.StrokesGained, totaldistancerank = productToInsert.TotalDistanceRank, forgivenessrank = productToInsert.ForgivenessRank, price = productToInsert.Price, driverID = productToInsert.driverID });
         }
 
-        public IEnumerable<Category> GetCategories()
+        /*public IEnumerable<Category> GetCategories()
         {
             return _conn.Query<Category>("SELECT * FROM categories;");
-        }
+        }*/
 
-        public Product AssignCategory()
+        /*public Product AssignCategory()
         {
             var categoryList = GetCategories();
             var product = new Product();
             product.Categories = categoryList;
 
             return product;
-        }
-        public void DeleteProduct(Product product)
+        }*/
+        public void DeleteProduct(Product products)
         {
-            _conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;",
-                                       new { id = product.ProductID });
-            _conn.Execute("DELETE FROM Sales WHERE ProductID = @id;",
-                                       new { id = product.ProductID });
-            _conn.Execute("DELETE FROM Products WHERE ProductID = @id;",
-                                       new { id = product.ProductID });
+            //_conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;",
+                                       //new { id = products.driverID });
+           //_conn.Execute("DELETE FROM Sales WHERE ProductID = @id;",
+                                       //new { id = products.driverID });
+            _conn.Execute("DELETE FROM Products WHERE DriverID = @id;",
+                                       new { id = products.driverID });
         }
 
-
+        public IEnumerable<Product> SearchProducts(string search)
+        {
+            return _conn.Query<Product>("SELECT * FROM products where name LIKE @name",
+            new { name = "%" + search + "%" });
+        }
     }
 }
 
