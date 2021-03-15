@@ -31,27 +31,27 @@
 
 @using (Html.BeginForm("UpdateProductToDatabase", "Product", "Post"))
 {
-    <input asp-for="driverID" type="hidden" value="@Model.driverID" />
+    <input asp-for="driverID" type="hidden" />
 
     <label  class="control-label">Name</label>
 
-    <input asp-for="Name" type="text" name="Name" class="form-control" value="@Model.Name" />
+    <input asp-for="Name" type="text" name="Name" class="form-control"  />
 
     <label  class="control-lable">Strokes Gained</label>
 
-    <input asp-for="StrokesGained" type="text" name="Strokes Gained" class="form-control" />
+    <input asp-for="StrokesGained" type="text" name="StrokesGained" class="form-control" />
 
     <label  class="control-lable">Total Distance Rank</label>
 
-    <input asp-for="TotalDistanceRank" type="text" name="Total Distance Rank" class="form-control" value="@Model.TotalDistanceRank" />
+    <input asp-for="TotalDistanceRank" type="text" name="TotalDistanceRank" class="form-control"  />
 
     <label  class="control-lable">Forgivness Rank</label>
 
-    <input asp-for="ForgivenessRank" type="text" name="ForgivnessRank" class="form-control" value="@Model.ForgivenessRank" />
+    <input asp-for="ForgivenessRank" type="text" name="ForgivenessRank" class="form-control"  />
 
     <label  class="control-label">Price</label>
 
-    <input asp-for="Price" type="number" step="0.01" name="Price" class="form-control" value="@Model.Price" />
+    <input asp-for="Price" type="number" step="0.01" name="Price" class="form-control" />
 
     <input type="submit" value="Update Product" class="btn btn-primary" />
 

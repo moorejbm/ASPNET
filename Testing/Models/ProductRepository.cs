@@ -29,18 +29,18 @@ namespace Testing.Models
 
         public void UpdateProduct(Product product)
         {
-            _conn.Execute("UPDATE products SET Name = @name, StrokesGained = @strokesGained, TotalDistanceRank = @totalDistanceRank, ForgivenessRank = @forgivenessRank, Price = @price WHERE driverID = @id",
+            _conn.Execute("UPDATE products SET Name = @name, strokesGained = @strokesGained, totalDistanceRank = @totalDistanceRank, forgivenessRank = @forgivenessRank, Price = @price WHERE driverID = @id",
                 new { name = product.Name, strokesGained = product.StrokesGained, totalDistanceRank = product.TotalDistanceRank, forgivenessRank = product.ForgivenessRank, price = product.Price, id = product.driverID });
         }
 
         public void InsertProduct(Product productsToInsert)
         {
-            _conn.Execute("INSERT INTO products (NAME, STROKESGAINED, TOTALDISTANCERANK, FORGIVENESSRANK, PRICE) VALUES (@name, @strokesgained, @totaldistancerank, @forgivenessrank, @price);",
+            _conn.Execute("INSERT INTO products (NAME, strokesGained, TOTALDISTANCERANK, FORGIVENESSRANK, PRICE) VALUES (@name, @strokesgained, @totaldistancerank, @forgivenessrank, @price);",
                 new { name = productsToInsert.Name, strokesgained = productsToInsert.StrokesGained, totaldistancerank = productsToInsert.TotalDistanceRank, forgivenessrank = productsToInsert.ForgivenessRank, price = productsToInsert.Price });
         }
 
         /*public IEnumerable<Category> GetCategories()
-        {
+        
             return _conn.Query<Category>("SELECT * FROM categories;");
         }*/
 
