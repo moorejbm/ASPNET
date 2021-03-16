@@ -10,6 +10,7 @@
         <th>Forgiveness Rank</th>
         <th>Price</th>
         <th>Image</th>
+
     </tr>
 
     @foreach (var product in Model)
@@ -22,7 +23,7 @@
             <td>@product.TotalDistanceRank</td>
             <td>@product.ForgivenessRank</td>
             <td>@product.Price</td>
-            <td><a href="https://www.callawaygolf.com/"><img src="@product.Image" width="200"/></a></td>
+            <td><a href="@product.URL"><img src="@product.Image" width="200" /></a></td>
         </tr>
     }
 
@@ -44,8 +45,8 @@
 
 
 
-</table>
-    
 
-   
+
+</table>
+
 

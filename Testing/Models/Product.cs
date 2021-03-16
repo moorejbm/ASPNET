@@ -19,6 +19,7 @@ namespace Testing.Models
             public int Price { get; set; }
             //public IEnumerable<Category> Categories { get; set; }
             public string Image { get; set; }
+            public string URL { get; set; }
     }
 
     }       
